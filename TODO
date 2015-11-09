@@ -1,0 +1,1 @@
+Add an option to print a Guassian fit of the histogram. The guassian is already calculated (mean and stdev are only parameters) .  
