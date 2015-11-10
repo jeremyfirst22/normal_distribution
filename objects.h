@@ -9,7 +9,7 @@ struct options{
     int numBins ; 
     string inFile ; 
     string outFile ; 
-    string gaussOut ; 
+    string gaussFile ; 
     bool overwrite ; 
     bool gaussBool ; 
 }; 

@@ -27,7 +27,7 @@ void example(){
 
 int read_options(int argc, char**  argv, options& opt)
 {
-    ifstream fileHandle ; 
+    //ifstream fileHandle ; 
     try
     {
         namespace po = boost::program_options ;
@@ -38,7 +38,7 @@ int read_options(int argc, char**  argv, options& opt)
           ("file,f", po::value<string>(&opt.inFile)->required(),"Specify input file") 
           ("out,o", po::value<string>(&opt.outFile)->required(),"Specify output file") 
           ("number,n", po::value<int>(&opt.numBins)->default_value(100),"Specify number of bins") 
-          ("gaussian-fit,g", po::value<string>(&opt.gaussOut), "Print a gaussian fit to a suplied file name")
+          ("gaussian-fit,g", po::value<string>(&opt.gaussFile), "Write a gaussian-fit to a specified file ") 
           ("overwrite", po::bool_switch(&opt.overwrite),"Force overwrite of existing output file."); 
           po::variables_map vm ;
         try
@@ -65,11 +65,17 @@ int read_options(int argc, char**  argv, options& opt)
             //return ERROR_IN_COMMAND_LINE ;
             //Catch incorrect options
         }
-        checkFile(opt.outFile, opt.overwrite) ; 
-        if (vm.count("gaussian-fit"))
+        if (vm.count("gaussian-fit")) 
         {
-            checkFile(opt.outFile,opt.overwrite) ; 
             opt.gaussBool = true ; 
+        }
+        if (! opt.overwrite ) 
+        {
+            checkFile(opt.outFile) ; 
+            if ( opt.gaussBool ) 
+            {
+                checkFile(opt.gaussFile) ; 
+            }
         }
     }
     catch(exception& e)

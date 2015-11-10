@@ -31,7 +31,8 @@ int main(int argc, char** argv)
 
     hist = histogram(data, opt.numBins) ; 
     print(hist,opt.outFile); 
-    print_gaussian(hist,"example.dat",std,avg)  ; 
+    if (opt.gaussBool) 
+        print_gauss(hist, opt.gaussFile, std, avg) ; 
     return 0; 
 }
 

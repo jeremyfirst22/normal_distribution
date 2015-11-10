@@ -1,1 +1,4 @@
-Add an option to print a Guassian fit of the histogram. The guassian is already calculated (mean and stdev are only parameters) .  
+Right now, the gaussian fit uses the max value of the histogram for a. This isn't actually
+    the best fit since it overestimates across the whole data. But the peak is in the 
+    correct position with the correct shape, so it works for now. 
+

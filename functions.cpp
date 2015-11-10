@@ -39,6 +39,22 @@ double maximum(vector<double>data)
     return max ; 
 }
 
+double column_maximum(vector< vector<double> > data, int col)
+{
+    double max = data[0][col] ; 
+    for (int i = 0 ; i < data.size() ; i++) 
+    {
+        if (data[i][col] > max ) {
+            max = data[i][col] ; 
+        }
+    }
+    return max ; 
+
+
+
+
+}
+
 double average(vector<double> data) 
 {
     double avg = 0 ; 
@@ -68,7 +84,6 @@ vector<vector<double> >histogram(vector<double> data, int numBins)
     vector< vector<double> > histogram ; //2-D vector of histogram. 
     double min = minimum(data) ; 
     double max = maximum(data) ; 
-    cout << data.size() << endl; 
 
     double binSize = (max - min)/double(numBins) ; 
 
@@ -97,14 +112,22 @@ vector<vector<double> >histogram(vector<double> data, int numBins)
             histogram.back()[1]+=1 ; 
         }
     }
-
-    for (int i = 0 ; i < histogram.size() ; i++)
-    {
-        histogram[i][1] = histogram[i][1] / double(data.size()) ; 
-
-    }
+    normalize(histogram) ; 
 
     return histogram ; 
+}
+
+void normalize(vector< vector<double> >& data) 
+{
+    double mag = magnitude(data) ; 
+    cout << "Before: " << mag << endl; 
+    for ( int i = 0 ; i < data.size() ; i ++) 
+    {       
+        data[i][1] = data[i][1] / mag ; 
+    }
+    cout << "After: " << magnitude(data) << endl; 
+
+    return ;  
 }
 
 void print(vector< vector<double> > hist, string outFile)
@@ -123,48 +146,41 @@ void print(vector< vector<double> > hist, string outFile)
     f.close() ; 
 }
 
-void print_gaussian( vector< vector<double> > hist, string outFile, double std, double avg)   
+void print_gauss(vector <vector <double > > hist, string outFile, double std, double avg)  
 {
-    ofstream f;
-    double x, gauss ;  
+    ofstream f ; 
     f.open(outFile.c_str()) ; 
-    if (! f.is_open()){
-        cerr << "ERROR: Gaussian output file failed to open" << endl ; 
-        exit(1) ; 
-    }
+    double x, gauss ; 
 
+    double a = column_maximum(hist, 1) ; 
+    cout << a << endl ; 
     for (int i = 0 ; i < hist.size() ; i++) 
-    {
+    {       
         x = hist[i][0] ; 
-        gauss = 2/(std*sqrt(2*3.1415)) * exp(-1* pow(x - avg,2)/(2*pow(std,2)) ) ; 
-        cout << x << "    " << gauss << endl; 
+        
+        gauss = a*exp(-(pow((x - avg),2))/(2*pow(std,2)))  ; 
+        f << x << "\t" << gauss << endl; 
     }
-
-    
     f.close() ; 
 }
 
-void checkFile(string fileName, bool overwrite) {
-    ifstream fileHandle ; 
-    if (! overwrite) 
+void checkFile(string fileName) 
+{
+    ifstream f(fileName.c_str()) ; 
+    if (f.good()) 
     {
-        ifstream outHandle(fileName.c_str() ) ; 
-        if(outHandle.good() ) 
-        {
-            cerr << "ERROR: " << fileName << " already exists. Use \"--overwrite\" flag to force overwrite of data" << endl ; 
-            exit(1) ; 
-        }
-    }
-    fileHandle.exceptions( ifstream::failbit | ifstream:: badbit) ; 
-    try
-    {   
-        fileHandle.open(fileName.c_str()) ; 
-        fileHandle.close() ; 
-    }
-    catch(ifstream::failure e) 
-    {
-        cerr << e.what()  << endl ; 
-        cerr << "ERROR: " << fileName << " unable to be opened " << endl; 
+        cerr << "ERROR: " << fileName << " already exits.\n\t If you wish to overwrite this file, use the \"--overwrite\" flag with caution." << endl ;
         exit(1) ; 
+    } 
+}
+
+double magnitude(vector <vector<double> > data) 
+{
+    double mag = 0 ; 
+    for (int i = 0 ; i < data.size() ; i++) 
+    {       
+        mag += data[i][1] ; 
     }
+    return mag ; 
+
 }
