@@ -49,10 +49,6 @@ double column_maximum(vector< vector<double> > data, int col)
         }
     }
     return max ; 
-
-
-
-
 }
 
 double average(vector<double> data) 
@@ -110,7 +106,7 @@ vector<vector<double> >histogram(vector<double> data, int numBins)
         if (data[i] == max )
         {
             histogram.back()[1]+=1 ; 
-        }
+        }   //Adds the max value to last bin, making the final bin of the histogram inclusive. (min,max]. 
     }
     normalize(histogram) ; 
 
@@ -119,14 +115,11 @@ vector<vector<double> >histogram(vector<double> data, int numBins)
 
 void normalize(vector< vector<double> >& data) 
 {
-    double mag = magnitude(data) ; 
-    cout << "Before: " << mag << endl; 
+    double mag = magnitude(data) ; //This is only the magnitude of the second column of the data. 
     for ( int i = 0 ; i < data.size() ; i ++) 
     {       
-        data[i][1] = data[i][1] / mag ; 
+        data[i][1] = data[i][1] / mag ; //This only normalizes the second column of the data. 
     }
-    cout << "After: " << magnitude(data) << endl; 
-
     return ;  
 }
 
@@ -159,6 +152,11 @@ void print_gauss(vector <vector <double > > hist, string outFile, double std, do
         x = hist[i][0] ; 
         
         gauss = a*exp(-(pow((x - avg),2))/(2*pow(std,2)))  ; 
+            //                     
+            //              (x-mu)^2 / ( 2 sigma^2) 
+            //  y = a * exp^
+            //
+            //
         f << x << "\t" << gauss << endl; 
     }
     f.close() ; 
@@ -167,7 +165,7 @@ void print_gauss(vector <vector <double > > hist, string outFile, double std, do
 void checkFile(string fileName) 
 {
     ifstream f(fileName.c_str()) ; 
-    if (f.good()) 
+    if (f.good()) //This will flag if the file already exists. It is only called if the --overwrite flag is not given.  
     {
         cerr << "ERROR: " << fileName << " already exits.\n\t If you wish to overwrite this file, use the \"--overwrite\" flag with caution." << endl ;
         exit(1) ; 
@@ -179,7 +177,7 @@ double magnitude(vector <vector<double> > data)
     double mag = 0 ; 
     for (int i = 0 ; i < data.size() ; i++) 
     {       
-        mag += data[i][1] ; 
+        mag += data[i][1] ; //This only calculates the magnitude of the second column of data. 
     }
     return mag ; 
 

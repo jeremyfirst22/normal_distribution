@@ -6,17 +6,23 @@
 
 int main(int argc, char** argv)
 {
+    //the options struct holds all run-time options. 
     options opt; 
-    opt.gaussBool = false ; 
+    opt.gaussBool = false ; //Initialize --overwrite flag to false. Probably should handle 
+                                //this in read_options. 
     vector<double> data ; 
     double avg, std ; 
     vector <vector<double> > hist ; 
 
     read_options(argc, argv, opt) ; 
 
+    //Print run-time parameters
     cout << "inFile : " << opt.inFile << endl ; 
     cout << "outFile: " << opt.outFile << endl ; 
     cout << "numBins: " << opt.numBins << endl ; 
+    if ( opt.gaussBool ) {
+        cout << "Gaussian fit file : " << opt.gaussFile << endl; 
+    }
 
     //Begin program
     

@@ -2,3 +2,12 @@ Right now, the gaussian fit uses the max value of the histogram for a. This isn'
     the best fit since it overestimates across the whole data. But the peak is in the 
     correct position with the correct shape, so it works for now. 
 
+I really need to add comments to the code!
+
+Use asserts to check values for debugging. See CSE class notes. 
+
+
+check out GSL and checkout eigen. 
+
+Consider having the program print a png file of the graph (matplotlib, etc) 
+

@@ -2,6 +2,7 @@ This program returns the normal distribution of data from a file. It will calcul
     1) A histogram of occurances, using a user-specified number of bins. 
     2) The mean and standard deviation of all data. 
     3) The most probable value (highest occupied bin of histogram)
+    4) An estimated gaussian fit of the histogram (with the -g option) 
 
 Before you install, ensure that the boost libraries are installed and available on your machine. 
 

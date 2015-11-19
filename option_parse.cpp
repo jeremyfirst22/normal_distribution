@@ -15,7 +15,8 @@ void description(){
 This program returns the normal distribution of data from a file. It will calculate:\n\
 \t1) A histogram of occurances, using a user-specified number of bins. \n\
 \t2) The mean and standard deviation of all data. \n\
-\t3) The most probable value (highest occupied bin of histogram)\n" ) ;
+\t3) The most probable value (highest occupied bin of histogram)\n\
+\t4) A gaussian approximation of the histrogram ( with -g option) " ) ;
     example(); 
     return ; 
 }
