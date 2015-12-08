@@ -108,7 +108,7 @@ vector<vector<double> >histogram(vector<double> data, int numBins)
             histogram.back()[1]+=1 ; 
         }   //Adds the max value to last bin, making the final bin of the histogram inclusive. (min,max]. 
     }
-    normalize(histogram) ; 
+    //normalize(histogram) ; 
 
     return histogram ; 
 }
@@ -153,7 +153,7 @@ void print_gauss(vector <vector <double > > hist, string outFile, double std, do
         
         gauss = a*exp(-(pow((x - avg),2))/(2*pow(std,2)))  ; 
             //                     
-            //              (x-mu)^2 / ( 2 sigma^2) 
+            //              -(x-mu)^2 / ( 2 sigma^2) 
             //  y = a * exp^
             //
             //
