@@ -1,5 +1,6 @@
 #include "option_parse.h"
-#include "functions.h"
+#include "iofunctions.h"
+#include "histogram.h"
 #include "boost_functions.h" 
 #include <iostream> 
 #include "objects.h"

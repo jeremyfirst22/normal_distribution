@@ -21,6 +21,7 @@ $(NAME): $(OBJS)
 .PHONY: clean clobber echo
 clobber: clean
 	rm -f $(NAME)
+	rm -f random_data.txt
 clean:
 	rm -f $(OBJS)
 echo:
