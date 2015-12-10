@@ -4,12 +4,14 @@
 #include "boost_functions.h" 
 #include <iostream> 
 #include "objects.h"
+#include "fit_polynomial.h"
 
 int main(int argc, char** argv)
 {
     //the options struct holds all run-time options. 
     options opt; 
     opt.gaussBool = false ; //Initialize --overwrite flag to false. Probably should handle 
+    opt.polyFit = false ; 
                                 //this in read_options. 
     vector<double> data ; 
     double avg, std ; 
@@ -23,6 +25,9 @@ int main(int argc, char** argv)
     cout << "numBins: " << opt.numBins << endl ; 
     if ( opt.gaussBool ) {
         cout << "Gaussian fit file : " << opt.gaussFile << endl; 
+    }
+    if ( opt.polyFit ) {
+        cout << "Polynomial fit file : " << opt.polyfitFile << endl; 
     }
 
     //Begin program
@@ -40,6 +45,8 @@ int main(int argc, char** argv)
     print(hist,opt.outFile); 
     if (opt.gaussBool) 
         print_gauss(hist, opt.gaussFile, std, avg) ; 
+    if (opt.polyFit) 
+        fit_polynomial(hist,avg, opt.numTerms, opt.polyfitFile) ; 
     return 0; 
 }
 

@@ -12,9 +12,13 @@ struct options{
                             //This data must be a single column of data. 
     string outFile ;    //A string holding the name of the file to write to.  
     string gaussFile ;  //A string holding thename of the file to write the Gaussian estimation. 
+    string polyfitFile ; 
+
     bool overwrite ;    //A manual overwrite flag to overwrite files already present. 
     bool gaussBool ;    //A flag to estimate the histogram with a Gaussian. Switched on 
                             // when the -g option is given. 
+    bool polyFit ; 
+    int numTerms ; 
 }; 
 
 #endif

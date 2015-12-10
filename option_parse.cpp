@@ -40,6 +40,8 @@ int read_options(int argc, char**  argv, options& opt)
           ("out,o", po::value<string>(&opt.outFile)->required(),"Specify output file") 
           ("number,n", po::value<int>(&opt.numBins)->default_value(100),"Specify number of bins") 
           ("gaussian-fit,g", po::value<string>(&opt.gaussFile), "Write a gaussian-fit to a specified file ") 
+          ("poly-fit,p",po::value<string>(&opt.polyfitFile), "Write a polynomial-fit to a specified file") 
+          ("terms,t",po::value<int>(&opt.numTerms)->default_value(10), "The number of terms for the polynomial fit") 
           ("overwrite", po::bool_switch(&opt.overwrite),"Force overwrite of existing output file."); 
           po::variables_map vm ;
         try
@@ -70,6 +72,15 @@ int read_options(int argc, char**  argv, options& opt)
         {
             opt.gaussBool = true ; 
         }
+        if (vm.count("poly-fit"))
+        {
+            opt.polyFit = true ; 
+        }
+        if (vm.count("terms") && !vm.count("poly-fit") ) 
+        {
+            cerr << "WARNING: --terms options used without --poly-fit. This has no effect!\n" ; 
+        }
+
         if (! opt.overwrite ) 
         {
             checkFile(opt.outFile) ; 
