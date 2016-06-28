@@ -4,14 +4,29 @@ vector<double> read_data(string fileName){
     ifstream f ; 
     vector<double> data ; 
     double value ; 
+    char line[128] ; 
     f.open(fileName.c_str()) ; 
-    if( f.is_open() ) 
+    
+    bool done = false ; 
+    while (f.good()) {
+        f.getline(line, 128) ; 
+    
+        if (strlen(line) == 0 ) continue  ; 
+        else if (line[0] == '#' ) continue ; 
+        else { 
+            value =  atof(line ) ; 
+            data.push_back(value) ; 
+        } 
+    }
+    // Added ignoring of comments. only works for lines starting with '#' 
+/*    if (f.is_open() ) 
     {
         while (f>>value) 
         {
             data.push_back(value); 
         }
     } 
+*/    
     f.close(); 
     return data ; 
 }
@@ -126,7 +141,7 @@ void normalize(vector< vector<double> >& data)
 void hist_normalize(vector< vector<double> >& data, double binwidth) 
 {
     double mag = magnitude(data) ; //This is only the magnitude of the second column of the data. 
-    cout << mag << endl; 
+    //cout << mag << endl; 
     for ( int i = 0 ; i < data.size() ; i ++) 
     {       
         data[i][1] = data[i][1] / (mag * binwidth) ; //This only normalizes the second column of the data. 

@@ -3,9 +3,9 @@
 using namespace std ; 
 
 void fit_polynomial(vector<vector<double> > data, double avg , int numTerms , string outFile) {
-    cout << "fit_polynomial called with " << numTerms << " number of terms" << endl; 
+//    cout << "fit_polynomial called with " << numTerms << " number of terms" << endl; 
     
-    cout << "Data is of size : " << data.size() << endl; 
+//  cout << "Data is of size : " << data.size() << endl; 
     double sumSquares ; 
     gsl_vector * Y = gsl_vector_calloc(data.size()); 
     gsl_vector * a = gsl_vector_calloc(numTerms) ; 

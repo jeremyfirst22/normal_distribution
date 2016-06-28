@@ -9,3 +9,8 @@ Implement plot the histogram and fit.
 Implement make check
 
 Verbose output option. 
+
+Bug: -f and -o flags only give warning that --terms used without --poly-fit. Why is this happening?
+
+
+

@@ -1,7 +1,6 @@
 #include "option_parse.h"
 #include "iofunctions.h"
 #include "histogram.h"
-#include "boost_functions.h" 
 #include <iostream> 
 #include "objects.h"
 #include "fit_polynomial.h"
@@ -10,9 +9,11 @@ int main(int argc, char** argv)
 {
     //the options struct holds all run-time options. 
     options opt; 
+    opt.overwrite = false ; 
     opt.gaussBool = false ; //Initialize --overwrite flag to false. Probably should handle 
-    opt.polyFit = false ; 
                                 //this in read_options. 
+    opt.polyFit = false ; 
+
     vector<double> data ; 
     double avg, std ; 
     vector <vector<double> > hist ; 
@@ -23,11 +24,15 @@ int main(int argc, char** argv)
     cout << "inFile : " << opt.inFile << endl ; 
     cout << "outFile: " << opt.outFile << endl ; 
     cout << "numBins: " << opt.numBins << endl ; 
+    cout << "overwrite : " ; 
+    if (opt.overwrite) { cout << "True" << endl ; }
+    else { cout << "False" << endl; }
     if ( opt.gaussBool ) {
         cout << "Gaussian fit file : " << opt.gaussFile << endl; 
     }
     if ( opt.polyFit ) {
         cout << "Polynomial fit file : " << opt.polyfitFile << endl; 
+        cout << "Number of terms : " << opt.numTerms << endl ; 
     }
 
     //Begin program

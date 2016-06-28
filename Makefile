@@ -23,15 +23,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CPPFLAGS) -c $<
 
 .PHONY: clean clobber echo test
-test: 
-	cd test && $(MAKE) test1
-	./test
-	cd ../
 clobber: clean
 	rm -f $(NAME)
-	rm -f random_data.txt
 clean:
 	rm -f $(OBJS)
 echo:
 	@echo $(OBJS)
-
+test: 
+	cd test ; ../tiltAngle --file random_data.txt --out out.dat --gauss gauss.dat --poly-fit poly.dat -n 100 --overwrite ; python plot_file.py out.dat gauss.dat ; python plot_file.py out.dat poly.dat ; open *.pdf ; cd ../ 

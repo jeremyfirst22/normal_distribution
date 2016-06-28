@@ -1,0 +1,118 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3773,        109]
+NotebookOptionsPosition[      3521,         95]
+NotebookOutlinePosition[      3875,        111]
+CellTagsIndexPosition[      3832,        108]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"data", " ", "=", " ", 
+    RowBox[{"RandomVariate", "[", 
+     RowBox[{
+      RowBox[{"NormalDistribution", "[", 
+       RowBox[{"0", ",", "5"}], "]"}], ",", "10000"}], "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", "data", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"\[Sigma]", 
+     SqrtBox[
+      RowBox[{"2", "\[Pi]"}]]}]], " ", 
+   RowBox[{"Exp", "[", 
+    FractionBox[
+     RowBox[{"-", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"x", "-", "\[Mu]"}], ")"}], "2"]}], 
+     RowBox[{"2", 
+      SuperscriptBox["\[Sigma]", "2"]}]], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Mu]", " ", "=", " ", 
+    RowBox[{"Mean", "[", "data", "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Sigma]", " ", "=", " ", 
+    RowBox[{"StandardDeviation", "[", "data", "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Histogram", "[", 
+    RowBox[{"data", ",", "100", ",", "\"\<PDF\>\"", ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"x", ",", "std", ",", " ", "mean"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"Min", "[", "data", "]"}], ",", 
+       RowBox[{"Max", "[", "data", "]"}]}], "}"}]}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fileName", " ", "=", " ", 
+    RowBox[{"StringJoin", "[", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<random_data.txt\>\""}], "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"fileName", ",", "data"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.658591162014329*^9, 3.658591226388134*^9}, {
+   3.6585914096572647`*^9, 3.65859142414452*^9}, {3.658591495057044*^9, 
+   3.6585914959832687`*^9}, {3.658592178893265*^9, 3.6585921868266563`*^9}, {
+   3.658592239388731*^9, 3.658592244842985*^9}, {3.6585929262877407`*^9, 
+   3.65859292957336*^9}, {3.658592993573608*^9, 3.658592994301403*^9}, {
+   3.658594534346076*^9, 3.6585945977441072`*^9}, {3.658594654256534*^9, 
+   3.658594658022852*^9}, {3.6585946997037563`*^9, 3.65859471971777*^9}, {
+   3.658594758502776*^9, 3.658594782236265*^9}, {3.658594826411557*^9, 
+   3.658594905938592*^9}, {3.658595163719808*^9, 3.6585951754540453`*^9}, {
+   3.658595212223159*^9, 3.658595236004554*^9}, {3.658595461694875*^9, 
+   3.6585955148635607`*^9}, {3.658595680541893*^9, 3.658595892585277*^9}, 
+   3.658596467128726*^9, {3.658596848392735*^9, 3.65859685371907*^9}, {
+   3.6586667399379807`*^9, 3.658666740648479*^9}, {3.658666952454989*^9, 
+   3.658666964323378*^9}, {3.658668352961255*^9, 3.658668387974209*^9}, {
+   3.658700243516708*^9, 3.658700247699374*^9}}]
+},
+WindowSize->{808, 751},
+WindowMargins->{{288, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 29, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2959, 73, 196, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
